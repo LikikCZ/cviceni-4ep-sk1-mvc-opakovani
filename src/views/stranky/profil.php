@@ -14,6 +14,10 @@
 
 <p>Jste přihlášeni jako <b><?php echo $prihlaseny_uzivatel; ?></b>.</p>
 
+<form action="<?php echo $zakladni_url; ?>index.php/uzivatele/pridat_prispevek/">
+    <input type="submit" value="Přidat příspevek" />
+</form>
+
 <form action="<?php echo $zakladni_url; ?>index.php/uzivatele/odhlasit/">
     <input type="submit" value="Odhlásit" />
 </form>

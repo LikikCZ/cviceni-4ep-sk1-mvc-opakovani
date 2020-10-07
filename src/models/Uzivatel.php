@@ -23,6 +23,11 @@ class Uzivatel
         return (mysqli_affected_rows($spojeni) == 1);
     }
 
+    public function ()
+    {
+        
+    }
+
     static public function existuje($jmeno, $heslo)
     {
         $spojeni = DB::pripojit();

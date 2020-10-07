@@ -30,6 +30,7 @@ $controllery_a_akce = array(
         "registrovat",
         "prihlasit",
         "odhlasit",
+        "pridat_prispevek",
     ),
 );
 

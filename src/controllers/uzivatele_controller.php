@@ -32,6 +32,16 @@ class Uzivatele
         return true;
     }
 
+    private function ujdaje_k_prispevku_jsou_kompletni()
+    {
+        if(!isset($_POST["zatimnwm"]))
+            return false;
+        if(empty(trim($_POST["zatimnwm"])))
+            return false;
+
+        return true;
+    }
+
     private function registracni_udaje_jsou_v_poradku($jmeno, $heslo, $heslo_znovu)
     {
         if(strlen($jmeno) < 1)
@@ -98,6 +108,19 @@ class Uzivatele
         {
             // zobrazeni formulare k vyplneni
             require_once "views/uzivatele/prihlasit.php";
+        }
+    }
+
+    public function pridat_prispevek()
+    {
+        if($this->ujdaje_k_prispevku_jsou_kompletni())
+        {
+            $zatimnwm = trim($_POST["zatimnwm"]);
+        }
+        else
+        {
+            // zobrazeni formulare k vyplneni
+            require_once "views/uzivatele/pridat_prispevek.php";
         }
     }
 
