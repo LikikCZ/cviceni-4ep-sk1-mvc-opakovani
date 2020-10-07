@@ -54,6 +54,18 @@ class Uzivatele
         return true;
     }
 
+    private function ujdaje_k_prispevku_jsou_v_poradku($jmeno, $heslo, $heslo_znovu)
+    {
+        if(strlen($jmeno) < 1)
+            return false;
+        if(strlen($heslo) < 1)
+            return false;
+        if($heslo_znovu != $heslo)
+            return false;
+
+        return true;
+    }
+
     public function registrovat()
     {
         if($this->registracni_udaje_jsou_kompletni())
@@ -115,7 +127,22 @@ class Uzivatele
     {
         if($this->ujdaje_k_prispevku_jsou_kompletni())
         {
-            $zatimnwm = trim($_POST["zatimnwm"]);
+            $nazev = trim($_POST["nazev"]);
+            $obsah = trim($_POST["obsah"]);
+            $jmeno = $_SESSION["prihlaseny_uzivatel"];
+            $zobrazovat = "ano";
+            
+            if($this->ujdaje_k_prispevku_jsou_v_poradku($nazev, $obsah))
+            {
+                $prispevek = new Prispevek($jmeno, $nazev, $obsah, $zobrazovat);
+                
+                if($prispevek->pridat_prispevek())
+                    return spustit("stranky", "profil");
+                else
+                    return spustit("stranky", "error");
+            }
+            else
+                require_once "views/uzivatele/pridat_prispevek.php";
         }
         else
         {
